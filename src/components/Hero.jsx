@@ -93,7 +93,7 @@ const Hero = () => {
           {/* CTAs */}
           <div className="flex flex-wrap gap-3 mt-1">
             <a
-              href="https://drive.google.com/file/d/1yBQ4023c0kVg58FfFu-e603kxvzyvFhe/view?usp=sharing"
+              href="https://drive.google.com/file/d/1_rqFvTDXg8GOAIkNyH1PqDy_EmN2lJLf/view?usp=sharing"
               target="_blank" rel="noopener noreferrer"
               className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-cyan-500/30 hover:-translate-y-0.5 transform text-sm tracking-wide"
             >
