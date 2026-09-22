@@ -15,6 +15,8 @@ import stock from "./stock.jpg";
 import dining from "./dining.jpg";
 import auction from "./auction.jpg";
 import ratelimiter from "./ratelimiter.jpg";
+import ads from "./ads.jpg";
+import meeting from "./meeting.png";
 export {
   rag,
   mulogo,
@@ -30,5 +32,7 @@ export {
   dining,
   auction,
   ratelimiter,
-  stock
+  stock,
+  ads,
+  meeting
 };

@@ -74,15 +74,12 @@ const Hero = () => {
 
           {/* Bio */}
           <p className="text-gray-400 text-base leading-relaxed">
-            Software engineer with <span className="text-white font-semibold">5+ years</span> of experience in backend and full-stack development, currently pursuing MS in Computer Science at NYU.
-            At Accenture, I built and scaled platforms for healthcare and financial services clients — designing Spring Boot microservices, optimizing PostgreSQL queries, tuning ActiveMQ pipelines, and managing containerized deployments with Docker and Kubernetes.
-            I enjoy solving hard backend problems: scalable APIs, distributed systems, and making complex infrastructure reliable.
-          </p>
+            I'm a backend engineer with 5 years of experience at Accenture, building production systems for healthcare and finance clients. I hold an M.S. in Computer Science from NYU and work primarily in Java/Spring Boot and Python/FastAPI, with Go as an emerging focus.  I build distributed systems, real-time video infrastructure, and RAG + AI agent projects. </p>
 
           {/* Social icons */}
           <div className="flex gap-5 items-center mt-1">
             {[
-              { href: 'https://github.com/komal-b', src: github, alt: 'GitHub' },
+              { href: 'https://github.com/komal-bagwe', src: github, alt: 'GitHub' },
               { href: 'https://www.linkedin.com/in/komalbagwe/', src: linkedin, alt: 'LinkedIn' },
               { href: 'https://medium.com/@komalbagwe31797', src: medium, alt: 'Medium' },
             ].map(({ href, src, alt }) => (

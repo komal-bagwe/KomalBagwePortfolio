@@ -4,11 +4,12 @@ import {
     rag,
     security,
     ngo,
-    weather,
+    ads,
     stock,
     auction,
     ratelimiter,
-    dining
+    dining,
+    meeting
   } from "../assets";
   
   export const navLinks = [
@@ -95,13 +96,11 @@ import {
       title: 'Software Engineer II',
       duration: 'Dec 2021 - Aug 2024',
       responsibilities: [
-        "Engineered two resilient 'Ping Down' functionalities, synchronizing central and pharmacy apps, maintaining data consistency to 95%.",
-        'Tuned ActiveMQ queues using producer flow control and memory optimization, reducing load by 30% and enhancing throughput by 20%.',
-        'Refactored EPS insurance data flow to PBM systems, cutting claim rejections by 25%.',
-        'Developed and deployed scalable Spring Boot REST APIs, integrated into 20% of internal modules.',
-        'Led an 8-member team in the absence of lead, maintaining delivery timelines and operational stability.',
-        'Orchestrated containerized microservices deployments using Docker and Kubernetes, ensuring high availability and zero-downtime releases.',
-        'Optimized complex PostgreSQL database queries, reducing query execution time by 40% for high-volume transaction modules.',
+        'Redesigned single-queue ActiveMQ into a dynamically configurable multi-consumer architecture and DLQ fault tolerance, scaling the pharmacy notification pipeline without message loss.',
+        'Built a Spring Boot configuration sync job with 4+ entity-specific update methods, keeping the Enterprise Pharmacy System (EPS) aligned with admin-portal changes.',
+        'Stepped as tech lead for an 8-member team across 15+ Agile sprints during a leadership gap, owning sprint refinement, design reviews, and stakeholder coordination while maintaining production stability.',
+        'Drove end-to-end technical design for 4+ pharmacy features as Lead Designer, authoring system and deployment specs in Confluence across multiple program increments.',
+        'Built microservice integration consuming patient card details from EPR into EPS, resolving identity-mismatch rejections and eliminating manual pharmacist intervention on Medi-Cal claims.',
       ],
     },
     {
@@ -109,17 +108,11 @@ import {
       title: 'Software Engineer',
       duration: 'Jun 2021 - Nov 2021',
       responsibilities: [
-        'Achieved 100% unit test coverage using JUnit, boosting test confidence.',
-        'Implemented secure authentication modules using OAuth2 and JWT, enhancing application security compliance for external vendor APIs.',
-      ],
-    },
-    {
-      company: 'Accenture',
-      title: 'Associate Software Engineer',
-      duration: 'Aug 2019 - May 2021',
-      responsibilities: [
-        'Migrated legacy manual testing to automated Selenium scripts, cutting manual QA time by 90% and increasing regression coverage.',
-        'Acted as Designated Responsible Individual (DRI) for high-volume transaction modules; utilized Splunk for real-time log analysis and monitoring, resolving 20+ critical production bottlenecks and maintaining 99.9% service availability.',
+        'Performed root-cause analysis on stale delivery-date notifications reaching members, then engineered pickup-type-aware promise time calculation across 3 notification triggers to resolve incorrect order completion times.',
+        'Persisted failed file transfer metadata in MongoDB, reducing defect team diagnosis time by 70% by eliminating log analysis.',
+        'Built a Splunk dashboard with parameterized inputs (pub-sub, file name, date) to isolate failed transfers from high-volume logs, cutting investigation time by 90%.',
+        'Migrated legacy manual testing to automated Selenium scripts, cutting manual QA time by 80% and increasing regression coverage.',
+        'Served as DRI on production support for high-volume transaction modules, owning incident monitoring, root-cause investigation, and resolution to maintain service availability.',
       ],
     },
   ];
@@ -138,7 +131,7 @@ import {
             'Automated per-website CSV privacy audit reports covering tracker detections and risk scores.',
           ],
           techStack: 'React, TypeScript, Java, Spring Boot, Python, FastAPI, PostgreSQL, JWT, OAuth2, Docker, Kubernetes',
-          github: 'https://github.com/komal-b/TraceMyData',
+          github: 'https://github.com/komal-bagwe/TraceMyData',
         },
         {
           title: 'WelcomeHome',
@@ -150,7 +143,7 @@ import {
             'Secured with Spring Security for role-based access control across admin and volunteer roles.',
           ],
           techStack: 'Java, Spring Boot, Spring Security, MySQL, ReactJS, CSS',
-          github: 'https://github.com/komal-b/WelcomeHome',
+          github: 'https://github.com/komal-bagwe/WelcomeHome',
         },
       ],
     },
@@ -167,7 +160,7 @@ import {
             'Evaluated with RAGAS framework on 8-question golden dataset achieving 0.94 context recall and 0.85 answer relevancy; experiment tracking with ClearML and containerized with Docker Compose.',
           ],
           techStack: 'Python, Sentence Transformers, Qdrant, MongoDB, Groq API, Llama3.1, ClearML, Gradio, Docker',
-          github: 'https://github.com/komal-b/rag-ros2',
+          github: 'https://github.com/komal-bagwe/rag-ros2',
         },
         {
           title: 'VibeTrader',
@@ -179,8 +172,21 @@ import {
             'PySpark ETL processes 5+ years of historical stock data; Redis caches real-time inference signals for low-latency access.',
           ],
           techStack: 'Python, TensorFlow, PyTorch, LangChain, Gemini API, Apache Kafka, PySpark, Redis, MongoDB, Selenium',
-          github: 'https://github.com/komal-b/VibeTrader',
+          github: 'https://github.com/komal-bagwe/VibeTrader',
         },
+        {
+          title: 'RAG + Agentic Ad-Buying Assistant',
+          image: ads,
+          description: [
+            'Built a second-price auction simulator (Monte Carlo, up to 5,000 auctions/day) and a daily agent loop that decides whether to raise, lower, or hold the bid based on recent performance.',
+            'Implemented RAG with Cohere embeddings and Qdrant Cloud over a bidding-strategy knowledge base, with an LLM (via Groq) making the final decision.',
+            "Added guardrails (±20% max change per decision, $0.10 minimum bid) so the agent can't make unsafe bid swings.",
+            "Built a Streamlit UI to configure campaigns, run simulations, and view the agent's day-by-day bids and reasoning.",
+          ],
+          techStack: 'Python, RAG, LLM Agents, Vector Databases, Prompt Engineering, Streamlit',
+          github: 'https://github.com/komal-bagwe/ad-buying-agent',
+        },
+
       ],
     },
     {
@@ -196,7 +202,7 @@ import {
             'Implemented a Dead Letter Queue for failed email deliveries with automatic retry logic.',
           ],
           techStack: 'AWS (Lex, Lambda, API Gateway, DynamoDB, OpenSearch, SQS, SES, S3, EventBridge), Python',
-          github: 'https://github.com/komal-b/Dining-Conceirge',
+          github: 'https://github.com/komal-bagwe/Dining-Conceirge',
         },
         {
           title: 'Live Flash Auction Platform',
@@ -207,13 +213,25 @@ import {
             'AWS stack: RDS PostgreSQL (auctions), ElastiCache Redis (pub/sub), DynamoDB (bid history), SQS + Lambda (async notifications), Cognito (auth), ALB (routing).',
           ],
           techStack: 'Python, React, TypeScript, AWS EKS, RDS PostgreSQL, ElastiCache Redis, DynamoDB, SQS, Lambda, Cognito, Kubernetes',
-          github: 'https://github.com/komal-b/live-flash-auction',
+          github: 'https://github.com/komal-bagwe/live-flash-auction',
         },
       ],
     },
     {
       category: 'Distributed Systems',
       items: [
+        {
+          title: 'Multi-Node WebRTC Video Interview Platform with AI Proctoring',
+          image: meeting,
+          description: [
+            'Built a WebRTC signaling layer with FastAPI and WebSockets, running as two stateless instances that coordinate through Redis Pub/Sub. Each instance subscribes only to channels for its own connected clients.',
+            'Added a local routing shortcut: if both peers sit on the same instance, messages skip Redis entirely. Set up STUN plus a coturn TURN server for NAT traversal, and packaged the full stack (Redis, 2 signaling servers, coturn, Nginx) in Docker Compose so it runs with one command.',
+            'Implemented proctoring in the browser with MediaPipe: no-face and multi-face detection, gaze-away tracking from iris landmarks, and tab-switch detection via the Visibility API. Video never leaves the candidate\'s machine.',
+            'Sent warnings over a peer-to-peer WebRTC data channel instead of the signaling servers. Candidates see the first 2 warnings; interviewers see all of them.',
+          ],
+          techStack: 'Python, FastAPI, WebSockets, Redis Pub/Sub, WebRTC, MediaPipe, Docker Compose, Nginx, coturn',
+          github: 'https://github.com/komal-bagwe/webrtc-scaled-signaling-video-call',
+        },
         {
           title: 'Real-Time Crypto Alert System',
           image: stock,
@@ -224,18 +242,17 @@ import {
             'Live Chart.js dashboard renders real-time price charts without page refreshes.',
           ],
           techStack: 'Node.js, Express, Socket.io, Redis (Pub/Sub + ZSET), Chart.js, CoinGecko API',
-          github: 'https://github.com/komal-b/crypto-alert-system',
+          github: 'https://github.com/komal-bagwe/crypto-alert-system',
         },
         {
           title: 'Distributed Rate Limiter',
           image: ratelimiter,
           description: [
-            '🚧 In Progress — High-performance rate-limiting service in Go implementing 4 core algorithms: Token Bucket, Leaky Bucket, Fixed Window, and Sliding Window.',
-            'Multi-stage Docker build produces a minimal ~15MB image; runs as a non-privileged user to reduce container escape risk.',
+            'High-performance rate-limiting service in Go implementing 4 core algorithms: Token Bucket, Fixed Window, Sliding Window Log, and Sliding Window Counter.',
             'Redis-backed for distributed consistency — rate limit state is shared across multiple service replicas.',
           ],
           techStack: 'Go, Redis, Docker, Docker Compose',
-          github: 'https://github.com/komal-b/go-rate-limiter',
+          github: 'https://github.com/komal-bagwe/go-rate-limiter',
         },
       ],
     },
